@@ -80,8 +80,8 @@ hello_module() {
     ARG=$@
 
     case ${COMMAND} in
-        'echo')
-            echo "hello "${ARG}
+        'world')
+            echo "Hello world (${ARG})"
             ;;
         'help')
             echo "Help on the module ${MODULE}"
@@ -91,6 +91,7 @@ hello_module() {
             echo ""
             echo "where command may be:"
             echo "  * echo - Echo your name"
+            echo "  * help - This message"
             ;;
         *)
             echo_err "A command is mandatory"
@@ -125,11 +126,11 @@ MODULE_ARGS=$@
 
 
 case  ${MODULE}  in
-    status)
+    hello)
         hello_module ${MODULE_ARGS}
         ;;
     *)
-        echo "Module ${MODULE} is unknown."
+        echo_err "Module (${MODULE}) is unknown."
         print_usage
         close_script 1
         ;;
